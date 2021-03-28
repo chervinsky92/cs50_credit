@@ -2,6 +2,7 @@
 #include <cs50.h>
 
 int check_length(long cc_num);
+int get_checksum(long cc_num);
 
 // 1. Check if valid number
 
@@ -16,6 +17,8 @@ int main(void)
 
     int cc_length = check_length(n);
     printf("Credit card length: %i\n", cc_length);
+    int checksum = get_checksum(n);
+    printf("Checksum: %i\n", checksum);
 }
 
 int check_length(long cc_num)
@@ -27,4 +30,31 @@ int check_length(long cc_num)
         n_digits++;
     }
     return n_digits;
+}
+
+int get_checksum(long cc_num)
+{
+    int sum = 0;
+    int count = 0;
+    int special_digits = 0;
+
+    while (cc_num > 0)
+    {
+        if (count % 2 == 0)
+        {
+            sum += (cc_num % 10);
+        }
+        else if (count % 2 == 1)
+        {
+            special_digits = (cc_num % 10) * 2;
+            while (special_digits > 0)
+            {
+                sum += special_digits % 10;
+                special_digits = (special_digits - (special_digits % 10)) / 10;
+            }
+        }
+        cc_num = (cc_num - (cc_num % 10)) / 10;
+        count++;
+    }
+    return sum % 10;
 }
