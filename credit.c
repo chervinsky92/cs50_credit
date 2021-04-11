@@ -24,18 +24,18 @@ int main(void)
     if (checksum == 0)
     {
         // American Express 15 digits, start with 34 or 37
-        if ((cc_length == 15) & (first_digit == 3) & (second_digit == 4 || second_digit == 7))
+        if ((cc_length == 15) & (first_digit == 3) && (second_digit == 4 || second_digit == 7))
         {
             printf("AMEX\n");
         }
         // Mastercard 16 digits, start with 51 - 55
-        else if ((cc_length == 16) & (first_digit == 5) & (second_digit == 1 || second_digit == 2 || second_digit == 3 || second_digit == 4
-                 || second_digit == 5))
+        else if ((cc_length == 16) && (first_digit == 5) && (second_digit == 1 || second_digit == 2 || second_digit == 3
+                 || second_digit == 4 || second_digit == 5))
         {
             printf("MASTERCARD\n");
         }
         // Visa 13 or 16 digits, start with 4
-        else if ((cc_length == 13 || cc_length == 16) & (first_digit == 4))
+        else if ((cc_length == 13 || cc_length == 16) && (first_digit == 4))
         {
             printf("VISA\n");
         }
