@@ -8,7 +8,7 @@ int find_second_digit(long cc_num);
 
 int main(void)
 {
-    // Get credit card number as input
+    // Ask user for credit card number
     long n = get_long("Number: ");
 
     int cc_length = check_length(n);
@@ -39,11 +39,13 @@ int main(void)
         {
             printf("VISA\n");
         }
+        // Not AMEX, MASTERCARD, or VISA
         else
         {
             printf("INVALID\n");
         }
     }
+    // Fails the checksum
     else
     {
         printf("INVALID\n");
